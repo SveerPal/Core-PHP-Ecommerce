@@ -1,0 +1,36 @@
+[28-Feb-2023 13:06:06 UTC] PHP Notice:  Undefined variable: type in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 29
+[28-Feb-2023 13:06:06 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%29%' LIMIT 0, 12' at line 1 in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php:49
+Stack trace:
+#0 /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php(49): PDOStatement->execute()
+#1 {main}
+  thrown in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 49
+[28-Feb-2023 13:06:31 UTC] PHP Notice:  Undefined variable: type in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 29
+[28-Feb-2023 13:06:31 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%29%' LIMIT 0, 12' at line 1 in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php:49
+Stack trace:
+#0 /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php(49): PDOStatement->execute()
+#1 {main}
+  thrown in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 49
+[28-Feb-2023 13:09:04 UTC] PHP Notice:  Undefined variable: type in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 30
+[28-Feb-2023 13:09:04 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%29%' LIMIT 0, 12' at line 1 in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php:53
+Stack trace:
+#0 /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php(53): PDOStatement->execute()
+#1 {main}
+  thrown in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 53
+[28-Feb-2023 13:09:18 UTC] PHP Notice:  Undefined variable: type in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 30
+[28-Feb-2023 13:09:18 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%29%' LIMIT 0, 12' at line 1 in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php:53
+Stack trace:
+#0 /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php(53): PDOStatement->execute()
+#1 {main}
+  thrown in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 53
+[28-Feb-2023 13:09:51 UTC] PHP Notice:  Undefined variable: type in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 30
+[28-Feb-2023 13:09:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%29%' LIMIT 0, 12' at line 1 in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php:53
+Stack trace:
+#0 /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php(53): PDOStatement->execute()
+#1 {main}
+  thrown in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 53
+[28-Feb-2023 13:10:02 UTC] PHP Notice:  Undefined variable: type in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 30
+[28-Feb-2023 13:10:02 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%29%' LIMIT 0, 12' at line 1 in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php:53
+Stack trace:
+#0 /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php(53): PDOStatement->execute()
+#1 {main}
+  thrown in /home/jm0r42w2l0ww/public_html/lib/templates/blog-search-ajax.php on line 53

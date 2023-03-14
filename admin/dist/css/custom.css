@@ -1,0 +1,39 @@
+
+.first-row {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #aeaeae;
+    padding-bottom: 20px;
+}
+.second-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.second-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    background: #f39c1236;
+    padding: 10px;
+    margin-top: 10px;
+}
+.order-detail {
+    background: #f5f5f5;
+    padding: 20px;
+}
+#order-id{
+    cursor: pointer;
+}
+.order-listing a{
+    color: #000;
+}
+.order-list-model .modal-content{
+        border-radius: 8px;
+    overflow: hidden;
+}
+.second-row span{
+    font-weight: 600;
+}
