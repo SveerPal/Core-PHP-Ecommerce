@@ -28,8 +28,8 @@ Class Database{
 $pdo = new Database();
 
 define('CURRENCY','₹'); 
-define('SITE_URL','https://www.alpasban.com/'); 
-define('ADMIN_URL','https://www.alpasban.com/admin/'); 
-define('UPLOADS','https://www.alpasban.com/admin/uploaded_files/');
+define('SITE_URL','http://localhost/alpasban/'); 
+define('ADMIN_URL','http://localhost/alpasban/admin/'); 
+define('UPLOADS','http://localhost/alpasban/admin/uploaded_files/');
 define('GST',12); 
 ?>
