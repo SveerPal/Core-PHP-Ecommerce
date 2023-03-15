@@ -14,7 +14,7 @@ function closeShoppingPopup (){
 function wishListAction(product_code) {
 	queryString = 'action=add&code='+ product_code;
 	jQuery.ajax({
-		url: "https://www.alpasban.com/includes/ajax_wish_list.php",
+		url: "http://localhost/alpasban/includes/ajax_wish_list.php",
 		data:queryString,
 		type: "POST",
 		dataType: "json",
@@ -28,7 +28,7 @@ function wishListAction(product_code) {
 function wishListActionRemove(product_code) {
 	queryString = 'action=remove&code='+ product_code;
 	jQuery.ajax({
-		url: "https://www.alpasban.com/includes/ajax_wish_list.php",
+		url: "http://localhost/alpasban/includes/ajax_wish_list.php",
 		data:queryString,
 		type: "POST",
 		dataType: "json",
@@ -66,7 +66,7 @@ function updatecartQty(){
 	//alert(queryString);
 	//return false;
 	jQuery.ajax({
-	url: "https://www.alpasban.com/includes/ajax_action_update.php",
+	url: "http://localhost/alpasban/includes/ajax_action_update.php",
 	data:{productData:queryString},
 	type: "POST",
 	success:function(data){
@@ -131,7 +131,7 @@ function cartAction(action,product_code,variationId='',quantity='') {
 	}
   jQuery('.msg').text('');
 	jQuery.ajax({
-	url: "https://www.alpasban.com/includes/ajax_action.php",
+	url: "http://localhost/alpasban/includes/ajax_action.php",
 	data:queryString,
 	type: "POST",
 	success:function(data){
@@ -151,18 +151,18 @@ function cartAction(action,product_code,variationId='',quantity='') {
                 });
             }else if(action == 'update'){
                 Lobibox.notify('success', {
-                    msg: 'Product has been updated successfully. <a style="color:#fff;" href="https://www.alpasban.com/cart.html">View Cart</a>',
+                    msg: 'Product has been updated successfully. <a style="color:#fff;" href="http://localhost/alpasban/cart.html">View Cart</a>',
                     position: "bottom right1"
                 });
             }else if(action == 'var_buy_detail' || action == 'buy_detail'){
               Lobibox.notify('success', {
-                  msg: 'Product has been added to cart. <a style="color:#fff;" href="https://www.alpasban.com/cart.html">View Cart</a>',
+                  msg: 'Product has been added to cart. <a style="color:#fff;" href="http://localhost/alpasban/cart.html">View Cart</a>',
                   position: "bottom right1"
               });
-              window.location.href='https://www.alpasban.com/checkout.html';
+              window.location.href='http://localhost/alpasban/checkout.html';
             }else{
             	Lobibox.notify('success', {
-                    msg: 'Product has been added to cart. <a style="color:#fff;" href="https://www.alpasban.com/cart.html">View Cart</a>',
+                    msg: 'Product has been added to cart. <a style="color:#fff;" href="http://localhost/alpasban/cart.html">View Cart</a>',
                     position: "bottom right1"
                 });
             }
@@ -181,7 +181,7 @@ function apply_coupon(){
         jQuery('.message').html("Please enter coupon code");
     }else{
        jQuery.ajax({
-    	url: "https://www.alpasban.com/includes/ajax_action_coupon.php",
+    	url: "http://localhost/alpasban/includes/ajax_action_coupon.php",
     	data:queryString,
     	type: "POST",
     	success:function(data){
@@ -199,7 +199,7 @@ function apply_coupon(){
 function removePromoCode(){
     var queryString = 'action=remove&code=';
     jQuery.ajax({
-		url: "https://www.alpasban.com/includes/ajax_coupon_remove.php",
+		url: "http://localhost/alpasban/includes/ajax_coupon_remove.php",
 		data:queryString,
 		type: "POST",
 		success:function(data){
@@ -244,7 +244,7 @@ function validate_review(e){
 	    $("form#" + e + "  .message").text("Please wait...");
 	    $.ajax({
             type: "POST",
-            url: "https://www.alpasban.com/includes/ajax_review.php",
+            url: "http://localhost/alpasban/includes/ajax_review.php",
             data: "product_id=" + product_id + "&name=" + name + "&email=" + email + "&message=" + message + "&rating=" + rating + "&form_type=review",
             success: function(html) {
                 $("form#" + e + "  .message").text("Thank you for submitting  you review.");
@@ -276,7 +276,7 @@ function newsletter_validation(e){
 	    $("form#" + e + "  .message").text("Please wait...");
 		$.ajax({
             type: "POST",
-            url: "https://www.alpasban.com/includes/form-process.php",
+            url: "http://localhost/alpasban/includes/form-process.php",
             data: "email=" + email + "&form_type=newsletter",
             success: function(html) {
 				if(html == 'success'){
@@ -328,7 +328,7 @@ function validation_v1(e){
 	    $("form#" + e + "  .message").text("Please wait...");
 	    $.ajax({
             type: "POST",
-            url: "https://www.alpasban.com/includes/form-process.php",
+            url: "http://localhost/alpasban/includes/form-process.php",
             data: "name=" + name + "&lname=" + lname + "&email=" + email + "&phone=" + phone + "&message=" + message + "&form_type=contactus",
             success: function(html) {
                 $("form#" + e + "  .message").text("Thank you for contacting us.");
@@ -338,7 +338,7 @@ function validation_v1(e){
                 $("form#" + e + " input[name=phone]").val('');
                 $("form#" + e + " textarea[name=message]").val('');
                 $('input[type="submit"]').removeAttr('disabled');
-                window.location.href='https://www.alpasban.com/thank-you.html';
+                window.location.href='http://localhost/alpasban/thank-you.html';
                 return false;
             }
         });
@@ -353,7 +353,7 @@ function viewCartItems() {
 	"Loading..."
 	);
     jQuery.ajax({
-		url: "https://www.alpasban.com/includes/ajax_cart_items.php",
+		url: "http://localhost/alpasban/includes/ajax_cart_items.php",
 		data:queryString,
 		dataType: "json",
 		type: "POST",
@@ -708,7 +708,7 @@ jQuery(document).ready(function($) {
 	  
 	  //alert(emailid);
 	 
-      $.get("https://www.alpasban.com/includes/ajax_register.php?firsts=" + firsts+"&lasts=" + lasts+"&id_email=" + emailid+"&phone_reg=" + phone_reg+"&pass_reg=" + pass_reg,
+      $.get("http://localhost/alpasban/includes/ajax_register.php?firsts=" + firsts+"&lasts=" + lasts+"&id_email=" + emailid+"&phone_reg=" + phone_reg+"&pass_reg=" + pass_reg,
 		function(data) { 
 		 //alert(data);
 		   
@@ -753,7 +753,7 @@ jQuery(document).ready(function($) {
 	var emailid = document.getElementById('loginemail').value;
 	var passwords = document.getElementById('loginpassword').value;
 	
-	$.get("https://www.alpasban.com/includes/ajax_login.php?id_email=" + emailid+"&id_password=" + passwords,
+	$.get("http://localhost/alpasban/includes/ajax_login.php?id_email=" + emailid+"&id_password=" + passwords,
 		function(data) { 
 		    //alert(data);
 		    $('#loginpopup').hide();
@@ -920,7 +920,7 @@ $("#forget_submit").click(function(){
 			if(emailid!=""){
 			//$("#loaderIcon").show();
 			}
-		   $.get("https://www.alpasban.com/includes/ajax_forget.php?id_email=" + emailid+"&formtype=" + formtype,
+		   $.get("http://localhost/alpasban/includes/ajax_forget.php?id_email=" + emailid+"&formtype=" + formtype,
 		   function(data) { 
 		   alert(data);
 			$('#div_forgetlogin').html(data);
