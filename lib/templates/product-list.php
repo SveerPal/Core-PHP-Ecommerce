@@ -106,10 +106,12 @@ if(isset($product['photo']) && $product['photo']!=''){
                 <?php } ?>
             <?php }  */?>
 			 <?php if($product['sale_price']!=0) { ?>
-			<span class="old__price"><?php echo CURRENCY.$product['sale_price']; ?></span>
+			<span class="old__price"><?php echo CURRENCY.$product['regular_price']; ?></span>
                 <span class="price__divided"></span>
-			 <?php } ?>
+                <span class="current__price"><?php echo CURRENCY.$product['sale_price']; ?></span>
+			 <?php }else{ ?>
                 <span class="current__price"><?php echo CURRENCY.$product['regular_price']; ?></span>
+                <?php } ?>
         </div>
         
     </div>

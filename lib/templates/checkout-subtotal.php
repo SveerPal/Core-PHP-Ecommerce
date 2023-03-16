@@ -16,7 +16,11 @@
                     $productvar_name = '';
                     $sellPrice = '';
                     if($item['fld_sale_price'] > 0){
-                        $sellPrice = '<span class="old__price">'.CURRENCY.$item["fld_sale_price"].'</span>';
+                        $sellPrice = '<span class="cart__price">'.CURRENCY. number_format((float)$item['fld_sale_price'], 2, '.', '').'</span>';
+                        $sub_total += ($item['quantity']*$item['fld_sale_price']);
+                    }else{
+                       $sellPrice = '<span class="cart__price">'.CURRENCY. number_format((float)$item['fld_price'], 2, '.', '').'</span>'; 
+                       $sub_total += ($item['quantity']*$item['fld_price']);
                     }
                     $productvariationName="";
                     if(isset($item['productvariationName'])){
@@ -25,7 +29,7 @@
 
                     $producturl = SITE_URL.'product/'.$item["fld_slug"].'.html';
                     $productvariationId = isset($item['productvariationId'])?$item['productvariationId']:0;
-                    $sub_total += ($item['quantity']*$item['fld_price']);
+                    
                     $total_amount = $sub_total;
                     $discountrow="";
                     $discount_amount = 0;
@@ -56,7 +60,7 @@
                             </div>
                         </td>
                         <td class="cart__table--body__list">
-                            <span class="cart__price"><?php echo CURRENCY. number_format((float)$item['fld_price'], 2, '.', ''); ?></span>
+                            <span class="cart__price"><?php echo $sellPrice; ?></span>
                         </td>
                     </tr>
                 <?php }
