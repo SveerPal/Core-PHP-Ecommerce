@@ -46,7 +46,14 @@ use Razorpay\Api\Api;
                                 $productvar_name=$FontEndData->getProductVariationAttributeValue($item['code'],$productvariationId);
                             
                             }
-                            $sub_total += ($item['quantity']*$item['fld_price']);
+                            if($item['fld_sale_price'] > 0){
+                			//	$sellPrice = '<span class="current__price">'.CURRENCY.$item["fld_sale_price"].'</span>';
+                				$sub_total += ($item['quantity']*$item['fld_sale_price']);
+                			}else{
+                			    //$sellPrice='<span class="current__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '' ).'</span>';
+                			    $sub_total += ($item['quantity']*$item['fld_price']);
+                			}
+                            //$sub_total += ($item['quantity']*$item['fld_price']);
                             $items_name .= $item['fld_title'].$productvar_name.' (QNT-'.$item["quantity"].')';
                         }
                         if(isset($_SESSION['coupon']) && $_SESSION['coupon']['discount_amount'] !=''){

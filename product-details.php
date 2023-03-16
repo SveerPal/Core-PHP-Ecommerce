@@ -141,11 +141,13 @@
                                 <?php } ?>
                                    <?php  */ ?>
 								     <?php if($price['sale_price']!=0){ ?>
-								     <span class="old__price"><?php echo CURRENCY.$price['sale_price']; ?></span>
+								     <span class="old__price"><?php echo CURRENCY.$price['regular_price']; ?></span>
 									 <span class="price__divided"></span>
-									 <?php } ?>
+									 <span class="current__price"><?php echo CURRENCY.$price['sale_price']; ?></span>
+									 <?php }else{ ?>
                                     
                                     <span class="current__price"><?php echo CURRENCY.$price['regular_price']; ?></span>
+                                    <?php } ?>
                                 </div>
                                 <div class="product__details--info__rating d-flex align-items-center mb-15">
                                     

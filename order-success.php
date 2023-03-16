@@ -136,7 +136,14 @@ if(isset($_SESSION['fld_payment_type']) && isset($_SESSION['fld_order_id']) && $
                                 }else{
                                     $product_code_sku=$FontEndData->getProductCodeSku($item['code']);
                                 }
-                                $sub_total += ($item['quantity']*$item['fld_price']);
+                                if($item['fld_sale_price'] > 0){
+                    			//	$sellPrice = '<span class="current__price">'.CURRENCY.$item["fld_sale_price"].'</span>';
+                    				$sub_total += ($item['quantity']*$item['fld_sale_price']);
+                    			}else{
+                    			    //$sellPrice='<span class="current__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '' ).'</span>';
+                    			    $sub_total += ($item['quantity']*$item['fld_price']);
+                    			}
+                                //$sub_total += ($item['quantity']*$item['fld_price']);
                                 $items_name .= $item['fld_title'].' '.$productvar_name.' (QNT-'.$item["quantity"].')';
                                 $mail_order_details .= '<tr><td style="border:1px solid #ccc;">'.$item['fld_title'].$productvar_name.'</td><td style="border:1px solid #ccc;text-align:center;">'.$item["quantity"].'</td>
                                 <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$item['fld_price'], 2, '.', '').'</td></tr>';

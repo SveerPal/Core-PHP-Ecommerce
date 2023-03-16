@@ -23,7 +23,11 @@ $message .= '<div class="minicart__header ">
 			$productvar_name = '';
 			$sellPrice = '';
 			if($item['fld_sale_price'] > 0){
-				$sellPrice = '<span class="old__price">'.CURRENCY.$item["fld_sale_price"].'</span>';
+				$sellPrice = '<span class="current__price">'.CURRENCY.$item["fld_sale_price"].'</span>';
+				$sub_total += ($item['quantity']*$item['fld_sale_price']);
+			}else{
+			    $sellPrice='<span class="current__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '' ).'</span>';
+			    $sub_total += ($item['quantity']*$item['fld_price']);
 			}
             $productvariationName="";
             if(isset($item['productvariationName'])){
@@ -31,7 +35,7 @@ $message .= '<div class="minicart__header ">
             }
 			$producturl = SITE_URL.'product/'.$item["fld_slug"].'.html';
 			$productvariationId = isset($item['productvariationId'])?$item['productvariationId']:0;
-            $sub_total += ($item['quantity']*$item['fld_price']);
+            
 			$message .= '<div class="minicart__product--items d-flex" >
                     <div class="minicart__thumb">
                         <a href="'.$producturl.'"><img src="'.SITE_URL.'admin/uploaded_files/products/'.$item["fld_img_path"].'" alt="'.$item["fld_title"].'"></a>
@@ -40,7 +44,7 @@ $message .= '<div class="minicart__header ">
                         <h3 class="minicart__subtitle h4"><a href="'.$producturl.'">'.$item['fld_title'].'</a></h3>
                         <span class="color__variant">'.$productvariationName.'</span>
                         <div class="minicart__price">
-                            <span class="current__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '' ).'</span>
+                            
                             '.$sellPrice.'
                         </div>
                         <div class="minicart__text--footer d-flex align-items-center" style="justify-content: flex-start; gap: 10px;">
@@ -99,6 +103,7 @@ $cart_message .='<div class="row"><div class="col-lg-8"><table class="cart__tabl
                                         </thead>
                                         <tbody class="cart__table--body">';
 							$sub_total = 0;
+							$productsubtotal="";
 							$pro_Idss = $pro_var_Idss = array();
                             foreach ($_SESSION["cart_item"] as $key => $item) {
                                 if($item['productvariationId']){
@@ -110,11 +115,21 @@ $cart_message .='<div class="row"><div class="col-lg-8"><table class="cart__tabl
 							$pro_Idss[] = $item['code'];
 							$pro_var_Idss[] = $item['code'].'-'.$productvariationId;
                             $producturl = SITE_URL.'product/'.$item["fld_slug"].'.html';
-                            $sub_total += ($item['quantity']*$item['fld_price']);
+                            //$sub_total += ($item['quantity']*$item['fld_price']);
                             $productvariationName='';
                             if(isset($item['productvariationName'])){
                                 $productvariationName=$item['productvariationName'];
                             }
+							
+							if($item['fld_sale_price'] > 0){
+                				$sellPrice = '<span class="cart__price">'.CURRENCY.number_format((float) $item['fld_sale_price'], 2, '.', '').'</span>';
+                				$sub_total += ($item['quantity']*$item['fld_sale_price']);
+                				$productsubtotal=($item['quantity']*$item['fld_sale_price']);
+                			}else{
+                			    $sellPrice='<span class="cart__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '').'</span>';
+                			    $sub_total += ($item['quantity']*$item['fld_price']);
+                			    $productsubtotal=($item['quantity']*$item['fld_price']);
+                			}
 							
                             $productimg = SITE_URL.'admin/uploaded_files/products/'.$item["fld_img_path"];
                             $cart_message .='<tr class="cart__table--body__items">
@@ -133,7 +148,7 @@ $cart_message .='<div class="row"><div class="col-lg-8"><table class="cart__tabl
                                                     </div>
                                                 </td>
                                                 <td class="cart__table--body__list">
-                                                    <span class="cart__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '').'</span>
+                                                    <span class="cart__price">'.$sellPrice.'</span>
                                                 </td>
                                                 <td class="cart__table--body__list">
                                                    <div class="quantity__box">
@@ -149,7 +164,7 @@ $cart_message .='<div class="row"><div class="col-lg-8"><table class="cart__tabl
                                                     </div>
                                                 </td>
                                                 <td class="cart__table--body__list">
-                                                    <span class="cart__price end">'.CURRENCY.number_format((float)($item['quantity']*$item['fld_price']), 2, '.', '' ).'</span>
+                                                    <span class="cart__price end">'.CURRENCY.number_format((float) $productsubtotal, 2, '.', '').'</span>
                                                 </td>
                                             </tr>';
 							}
