@@ -102,8 +102,20 @@
                                       $productvar_name=$SettingsData->getProductVariationAttributeValue($orderproductdetail['fld_product_id'],$orderproductdetail['fld_product_variation_id']);
                                   
                                     }
-                                    $sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
-                                    $sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                                    if($orderproductdetail['fld_sale_price'] > 0){
+                        				$sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_sale_price']);
+                        				$sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_sale_price']);
+                        				$fld_amount=$orderproductdetail['fld_sale_price'];
+                        			}else{
+                        			  
+                        			    $sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                        			    $sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                        			    $fld_amount=$orderproductdetail['fld_amount'];
+                        			}
+                        			
+                                    //$sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                                    //$sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                                    
                                     // $sub_total += (int)$orderproductdetail['fld_amount'];
                                     $items_name .= $orderproductdetail['fld_product_name'].' '.$productvar_name.' (QNT-'.$orderproductdetail["fld_quantity"].')';
                                     $productDetails=$SettingsData->getProductDetail($orderproductdetail['fld_product_id']);
@@ -127,7 +139,7 @@
                                 </td>
                                 <td><span class="in__stock text__secondary"><?php echo $productDetails[0]['hsn_code'] ?></span></td>
                                 <td><span class="in__stock text__secondary"><?php echo $orderproductdetail['fld_quantity']; ?></span></td>
-                                <td><?php echo CURRENCY.number_format((float)$orderproductdetail['fld_amount'], 2, '.', ''); ?></td>
+                                <td><?php echo CURRENCY.number_format((float)$fld_amount, 2, '.', ''); ?></td>
                                 <td><?php echo CURRENCY.number_format((float)$sub_total_product, 2, '.', ''); ?></td>
                             </tr>
                             <?php $i++;} } 
@@ -317,8 +329,18 @@
                                           $productvar_name=$SettingsData->getProductVariationAttributeValue($orderproductdetail['fld_product_id'],$orderproductdetail['fld_product_variation_id']);
                                       
                                         }
-                                        $sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
-                                        $sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                                        if($orderproductdetail['fld_sale_price'] > 0){
+                            				$sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_sale_price']);
+                            				$sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_sale_price']);
+                            				$fld_amount=$orderproductdetail['fld_sale_price'];
+                            			}else{
+                            			  
+                            			    $sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                            			    $sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                            			    $fld_amount=$orderproductdetail['fld_amount'];
+                            			}
+                                        //$sub_total += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
+                                        //$sub_total_product += ((int)$orderproductdetail['fld_quantity']*(int)$orderproductdetail['fld_amount']);
                                         // $sub_total += (int)$orderproductdetail['fld_amount'];
                                         $items_name .= $orderproductdetail['fld_product_name'].'&nbsp;&nbsp;'.$productvar_name.' (QNT-'.$orderproductdetail["fld_quantity"].')';
                                         $productDetails=$SettingsData->getProductDetail($orderproductdetail['fld_product_id']);
@@ -342,7 +364,7 @@
                                     </td>
                                     <td><span class="in__stock text__secondary"><?php echo $productDetails[0]['hsn_code'] ?></span></td>
                                     <td class="text-right"><span class="in__stock text__secondary"><?php echo $orderproductdetail['fld_quantity']; ?></span></td>
-                                    <td class="text-right"><?php echo 'INR&nbsp;&nbsp; '.number_format((float)$orderproductdetail['fld_amount'], 2, '.', ''); ?></td>
+                                    <td class="text-right"><?php echo 'INR&nbsp;&nbsp; '.number_format((float)$fld_amount, 2, '.', ''); ?></td>
                                     <td class="text-right"><?php echo 'INR&nbsp;&nbsp; '.number_format((float)$sub_total_product, 2, '.', ''); ?></td>
                                 </tr>
                                 <?php $i++;} } 

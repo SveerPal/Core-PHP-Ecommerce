@@ -139,20 +139,22 @@ if(isset($_SESSION['fld_payment_type']) && isset($_SESSION['fld_order_id']) && $
                                 if($item['fld_sale_price'] > 0){
                     			//	$sellPrice = '<span class="current__price">'.CURRENCY.$item["fld_sale_price"].'</span>';
                     				$sub_total += ($item['quantity']*$item['fld_sale_price']);
+                    				$item_price=$item['fld_sale_price'];
                     			}else{
                     			    //$sellPrice='<span class="current__price">'.CURRENCY.number_format((float) $item['fld_price'], 2, '.', '' ).'</span>';
                     			    $sub_total += ($item['quantity']*$item['fld_price']);
+                    			    $item_price=$item['fld_price'];
                     			}
                                 //$sub_total += ($item['quantity']*$item['fld_price']);
                                 $items_name .= $item['fld_title'].' '.$productvar_name.' (QNT-'.$item["quantity"].')';
                                 $mail_order_details .= '<tr><td style="border:1px solid #ccc;">'.$item['fld_title'].$productvar_name.'</td><td style="border:1px solid #ccc;text-align:center;">'.$item["quantity"].'</td>
-                                <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$item['fld_price'], 2, '.', '').'</td></tr>';
+                                <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$item_price, 2, '.', '').'</td></tr>';
                                 
                                 
                                 $shiprocketitem['name']= $item['fld_title'] ." ".$productvar_name;
                                 $shiprocketitem['units']= $item['quantity'] ;
                                 $shiprocketitem['sku']= $product_code_sku['sku'] .' || '.$product_code_sku['product_code'];
-                                $shiprocketitem['selling_price']= $item['fld_price'] ;
+                                $shiprocketitem['selling_price']= $item_price ;
                                 $shiprocketitem['discount']= "" ;
                                 $shiprocketitem['tax']= "" ;
                                 $shiprocketitem['hsn']= "" ;
@@ -188,7 +190,7 @@ if(isset($_SESSION['fld_payment_type']) && isset($_SESSION['fld_order_id']) && $
                                     '.$itemcat.'
                                     item_variant: "'.$productvar_name.'",
                                     location_id: "",
-                                    price: '.number_format((float)$item['fld_price'], 2, '.', '').',
+                                    price: '.number_format((float)$item_price, 2, '.', '').',
                                     quantity: '.(int)$item['quantity'].'
                                 },';
                                 //GTM Code End
@@ -238,6 +240,8 @@ if(isset($_SESSION['fld_payment_type']) && isset($_SESSION['fld_order_id']) && $
                                 $mail_order_details .= '<tr><td style="border:1px solid #ccc;text-align:right;"></td><td style="border:1px solid #ccc;text-align:right;">Discount (Promo Code: '.$promo_code.')</td>
                             <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' -'.number_format((float)$discount_amount, 2, '.', '').'</td></tr>';
                             }
+                            $mail_order_details .= '<tr><td style="border:1px solid #ccc;text-align:right;"></td><td style="border:1px solid #ccc;text-align:right;">Sub Total</td>
+                             <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$sub_total-$vat, 2, '.', '').'</td></tr>';
                              $mail_order_details .= '<tr><td style="border:1px solid #ccc;text-align:right;"></td><td style="border:1px solid #ccc;text-align:right;">GST ('.GST.'%)</td>
                              <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$vat, 2, '.', '').'</td></tr>';
                             
@@ -334,7 +338,9 @@ if(isset($_SESSION['fld_payment_type']) && isset($_SESSION['fld_order_id']) && $
                             </tr>
                             </table>
                             </div>';
-                            
+                           // echo $user_email_message;
+                           // echo $admin_email_message;
+                            //die('lll');
                             $email=$_SESSION['useremail'];
                             $to = "support@alpasban.com";
                             $from = $email;
@@ -598,7 +604,7 @@ if(isset($_SESSION['fld_payment_type']) && isset($_SESSION['fld_order_id']) && $
                                             <?php 
                                             
                                                 $order_details .= '<tr><td style="border:1px solid #ccc;text-align:right;" colspan="2">Subtotal</td>
-                                            <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$sub_total, 2, '.', '').'</td></tr>';
+                                            <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$sub_total-$vat, 2, '.', '').'</td></tr>';
                                             $order_details .= '<tr><td style="border:1px solid #ccc;text-align:right;" colspan="2">GST ('.GST.'%)</td>
                                             <td style="border:1px solid #ccc;text-align:right;">'.CURRENCY.' '.number_format((float)$vat, 2, '.', '').'</td></tr>';
                                             if($promo_code !=''){
