@@ -62,23 +62,24 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id");
+                $stmt = $conn->prepare("SELECT sum(fld_amount) as fld_amount FROM order_detials ");
                 $stmt->execute();
+                $srow = $stmt->fetch();
+                //print_r($srow);
+                // $total = 0;
+                // foreach($stmt as $srow){
+                //   $subtotal = $srow['regular_price']*$srow['quantity'];
+                //   $total += $subtotal;
+                // }
 
-                $total = 0;
-                foreach($stmt as $srow){
-                  $subtotal = $srow['regular_price']*$srow['quantity'];
-                  $total += $subtotal;
-                }
-
-                echo "<h3>&#8377; ".number_format_short($total, 2)."</h3>";
+                echo "<h3>&#8377; ".number_format_short($srow['fld_amount'], 2)."</h3>";
               ?>
               <p>Total Sales</p>
             </div>
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
             </div>
-            <a href="view-orders.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="sales.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -129,16 +130,24 @@
           <div class="small-box bg-red">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
-                $stmt->execute(['sales_date'=>$today]);
+                $stmt = $conn->prepare("SELECT sum(fld_amount) as fld_amount FROM order_detials WHERE DATE(fld_modified_date) = CURDATE()");
+                $stmt->execute();
+                $srow = $stmt->fetch();
+                
 
-                $total = 0;
-                foreach($stmt as $trow){
-                  $subtotal = $trow['price']*$trow['quantity'];
-                  $total += $subtotal;
-                }
+                echo "<h3>&#8377; ".number_format_short($srow['fld_amount'], 2)."</h3>";
+            
+              
+                // $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
+                // $stmt->execute(['sales_date'=>$today]);
 
-                echo "<h3>&#8377; ".number_format_short($total, 2)."</h3>";
+                // $total = 0;
+                // foreach($stmt as $trow){
+                //   $subtotal = $trow['price']*$trow['quantity'];
+                //   $total += $subtotal;
+                // }
+
+                //echo "<h3>&#8377; ".number_format_short($total, 2)."</h3>";
                 
               ?>
 
@@ -147,7 +156,7 @@
             <div class="icon">
               <i class="fa fa-money"></i>
             </div>
-            <a href="view-orders.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="sales.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

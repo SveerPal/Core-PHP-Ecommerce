@@ -55,8 +55,8 @@
                   <th>Photo</th>
                   <th>Email</th>
                   <th>Name</th>
-                  <th>Status</th>
-                  <th>Date Added</th>
+                  <th>Phone</th>
+                  <th>Date</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
@@ -64,7 +64,7 @@
                     $conn = $pdo->open();
 
                     try{
-                      $stmt = $conn->prepare("SELECT * FROM users WHERE type=:type");
+                      $stmt = $conn->prepare("SELECT * FROM users WHERE type=:type order by id desc");
                       $stmt->execute(['type'=>0]);
                       foreach($stmt as $row){
                         $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../admin/images/profile.jpg';
@@ -78,14 +78,14 @@
                             </td>
                             <td>".$row['email']."</td>
                             <td>".$row['firstname'].' '.$row['lastname']."</td>
+                            <td>".$row['phone_no']."</td>
                             <td>
-                              ".$status."
+                              ".date('d-m-Y',strtotime($row['created_on']))."
                              
                             </td>
-                            <td>".date('M d, Y', strtotime($row['created_on']))."</td>
                             <td>
-                              <a href='cart.php?user=".$row['id']."' class='btn btn-info btn-sm btn-flat'><i class='fa fa-search'></i> Cart</a>
-                              <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
+                              <a href='users_details.php?user=".$row['id']."' class='btn btn-info btn-sm btn-flat'><i class='fa fa-eye'></i> View</a>
+                              <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."' style='display:none'><i class='fa fa-edit'></i> Edit</button>
                               <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
                             </td>
                           </tr>
@@ -174,7 +174,31 @@ $('#editForm').on('submit',function(e) {
       }
     })
 });
-
+$('#deleteForm').on('submit',function(e) {
+    e.preventDefault();        
+    let formData = new FormData(this);
+    formData.append("delete",'delete');
+    $.ajax({
+      type: 'POST',
+      url: 'includes/users/users_delete.php',
+      data: formData,
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      success: function(response){
+        $('.msgdelete').html(response.msg);
+          setTimeout(function(){
+            $('.msgdelete').html('');
+          },3000)
+        if(response.sts==1){
+          setTimeout(function(){
+            location.reload(); 
+          },3000)           
+        }
+        
+      }
+    })
+});
 
 function getRow(id){
   $.ajax({

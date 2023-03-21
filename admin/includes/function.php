@@ -165,6 +165,14 @@
 				return $getStmt->fetchAll();
 			}
 		}
+		function getOrderListByUser($user_id){
+			$getStmt =$this->conn->prepare("SELECT * from order_detials where fld_user_id='$user_id' ORDER BY fld_modified_date DESC ");
+		   	$getStmt->execute();
+		   	$count = $getStmt->rowCount();
+			if($count>0){
+				return $getStmt->fetchAll();
+			}
+		}
 		function orderDetail($orderid){
 		//	echo "select * from order_detials where fld_order_id='$orderid'";
 			$getStmt =$this->conn->prepare("select * from order_detials where fld_order_id='$orderid'");
@@ -292,6 +300,23 @@
             } 
            // die("ffff");
 			return true;
+		}
+		
+		function userDetail($user_id){
+			$getStmt =$this->conn->prepare("select * from users where id='$user_id'");
+		   	$getStmt->execute();
+		   	$count = $getStmt->rowCount();
+			if($count>0){
+				return $getStmt->fetch();
+			}
+		}
+		function userDetailAddress($user_id,$type){
+			$getStmt =$this->conn->prepare("select * from users_address where fld_user_id='$user_id' and fld_type='$type'");
+		   	$getStmt->execute();
+		   	$count = $getStmt->rowCount();
+			if($count>0){
+				return $getStmt->fetch();
+			}
 		}
                         
 	}

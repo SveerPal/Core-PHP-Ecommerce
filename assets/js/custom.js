@@ -685,6 +685,11 @@ jQuery(document).ready(function($) {
 	$("#phones").focus();
 	return false;
     }
+	var phoneno = /^\d{10}$/;
+    if (phoneno.test($("#phones").val()) == false) {
+        alert("Invalid Phone! Please re-enter.");
+        return false;
+    }
 	
 	if($("#fld_emp_pass").val()==''){
  	alert("Enter Password.");

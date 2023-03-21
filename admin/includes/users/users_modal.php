@@ -158,11 +158,12 @@
               <h4 class="modal-title"><b>Deleting...</b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="users_delete.php">
+              <form class="form-horizontal" method="POST" id="deleteForm">
                 <input type="hidden" class="userid" name="id">
                 <div class="text-center">
                     <p>DELETE USER</p>
                     <h2 class="bold fullname"></h2>
+                    <span class="msgdelete"></span>
                 </div>
             </div>
             <div class="modal-footer">
